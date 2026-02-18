@@ -6,14 +6,11 @@ import Icon from "@/components/ui/icon";
 interface StarPackProps {
   stars: number;
   price: number;
-  discount?: number;
   popular?: boolean;
   onBuy: () => void;
 }
 
-const StarPackCard = ({ stars, price, discount, popular, onBuy }: StarPackProps) => {
-  const originalPrice = discount ? Math.round(price / (1 - discount / 100)) : price;
-
+const StarPackCard = ({ stars, price, popular, onBuy }: StarPackProps) => {
   return (
     <Card
       className={`relative overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
@@ -38,21 +35,7 @@ const StarPackCard = ({ stars, price, discount, popular, onBuy }: StarPackProps)
           <p className="text-sm text-muted-foreground mt-1">звёзд Telegram</p>
         </div>
 
-        <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-bold text-gradient">{price} ₽</span>
-          {discount && (
-            <span className="text-sm text-muted-foreground line-through">
-              {originalPrice} ₽
-            </span>
-          )}
-        </div>
-
-        {discount && (
-          <Badge variant="secondary" className="text-green-400 bg-green-400/10">
-            <Icon name="TrendingDown" size={12} className="mr-1" />
-            Скидка {discount}%
-          </Badge>
-        )}
+        <span className="text-3xl font-bold text-gradient">{price} ₽</span>
 
         <Button
           onClick={onBuy}
@@ -64,7 +47,7 @@ const StarPackCard = ({ stars, price, discount, popular, onBuy }: StarPackProps)
         </Button>
 
         <p className="text-xs text-muted-foreground">
-          {(price / stars).toFixed(2)} ₽ за звезду
+          {(price / stars).toFixed(1)} ₽ за звезду
         </p>
       </CardContent>
     </Card>

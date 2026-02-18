@@ -8,13 +8,15 @@ import { Label } from "@/components/ui/label";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 
+const PRICE_PER_STAR = 1.5;
+
 const packs = [
-  { stars: 50, price: 75 },
-  { stars: 100, price: 140, discount: 7 },
-  { stars: 250, price: 325, discount: 13 },
-  { stars: 500, price: 600, discount: 20, popular: true },
-  { stars: 1000, price: 1100, discount: 27 },
-  { stars: 2500, price: 2500, discount: 33 },
+  { stars: 50, price: 50 * PRICE_PER_STAR },
+  { stars: 100, price: 100 * PRICE_PER_STAR },
+  { stars: 250, price: 250 * PRICE_PER_STAR },
+  { stars: 500, price: 500 * PRICE_PER_STAR, popular: true },
+  { stars: 1000, price: 1000 * PRICE_PER_STAR },
+  { stars: 2500, price: 2500 * PRICE_PER_STAR },
 ];
 
 const Catalog = () => {
@@ -57,7 +59,7 @@ const Catalog = () => {
             Каталог <span className="text-gradient">звёзд</span>
           </h1>
           <p className="text-muted-foreground">
-            Выберите подходящий пакет. Чем больше — тем выгоднее
+            Выберите подходящий пакет — {PRICE_PER_STAR} ₽ за звезду
           </p>
         </div>
 
